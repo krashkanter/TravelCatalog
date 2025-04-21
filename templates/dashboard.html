@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Explore Districts{% endblock %}
+
+{% block content %}
+    <div class="hero-section rounded-box mb-spacing-12">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-content z-index-10 padding-x-8 padding-y-12 text-white">
+            <h1 class="hero-title font-extrabold mb-spacing-3">Discover Amazing Places</h1>
+            <p class="hero-subtitle max-width-2xl mb-spacing-6">Explore the natural beauty, culture, and unique
+                experiences that make each
+                district special.</p>
+            <div class="flex-group gap-spacing-4">
+                <a href="#districts" class="explore-button inline-flex-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-5 mr-spacing-2" viewBox="0 0 20 20"
+                         fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    Explore Districts
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="districts" class="districts-section mb-spacing-16">
+        <h2 class="section-title text-gray-800 mb-spacing-8 pb-spacing-2 relative">
+            Districts to Explore
+            <span class="section-underline absolute bottom-0 left-0 rounded-full"></span>
+        </h2>
+
+        <div class="districts-grid gap-spacing-8">
+            {% for district in districts %}
+                <div class="district-card group">
+                    <div class="card-image-container relative overflow-hidden height-56">
+                        {% if district.image_url %}
+                            <img src="{{ district.image_url }}" alt="{{ district.name }}"
+                                 class="card-image transition-transform duration-500 group-hover:scale-110">
+                        {% else %}
+                            <div class="card-no-image flex-items-center-justify-center">
+                                <span class="text-5xl">📷</span>
+                            </div>
+                        {% endif %}
+                        <div class="image-overlay absolute inset-0 transition-opacity duration-300">
+                            <div class="overlay-content absolute bottom-0 left-0 padding-6">
+                                <h2 class="overlay-title text-white mb-spacing-1">{{ district.name }}</h2>
+                                <p class="overlay-subtitle text-blue-200 text-sm">{{ district.taluks|length }}
+                                    Taluk{{ district.taluks|length != 1 and 's' or '' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body padding-6">
+                        <h2 class="card-title text-gray-800 mb-spacing-1">{{ district.name }}</h2>
+                        <p class="card-subtitle text-gray-500 mb-spacing-4">{{ district.taluks|length }}
+                            Taluk{{ district.taluks|length != 1 and 's' or '' }}</p>
+                        <a href="{{ url_for('view_district', district_id=district.id) }}"
+                           class="card-link inline-flex-items-center rounded-full transition-all shadow-md hover:shadow-xl">
+                            <span>Explore</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-5 ml-spacing-2" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

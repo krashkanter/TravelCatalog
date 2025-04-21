@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Add Taluk{% endblock %}
+
+{% block content %}
+    <div class="admin-page-content mb-spacing-8"> {# Reusing admin-page-content, mb-spacing-8 #}
+        <div class="page-header mb-spacing-6"> {# Reusing page-header, mb-spacing-6 #}
+            <h1 class="page-title font-bold mb-spacing-2">Add New Taluk</h1>
+            {# Reusing page-title, font-bold, mb-spacing-2 #}
+            <a href="{{ url_for('list_taluks') }}"
+               class="back-link text-blue-600 hover-underline">← Back to Taluks</a>
+            {# Reusing back-link, utility-like classes #}
+        </div>
+
+        {# This form block follows the standard admin form block pattern #}
+        <div class="admin-form-block bg-white rounded-lg shadow-md padding-6 max-w-md mx-auto">
+            {# Reusing admin-form-block and utility classes for layout #}
+            <form method="POST" action="{{ url_for('add_taluk') }}">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                    <label for="name" class="form-label block text-gray-700 font-medium mb-spacing-2">Taluk Name</label>
+                    {# Reusing form-label, utility classes #}
+                    {{ form.name(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.name.errors %}
+                        <div class="error-message text-red-500 text-sm mt-spacing-1">
+                            {# Reusing error-message, utility classes #}
+                            {% for error in form.name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-spacing-6"> {# Reusing form-group, using mb-spacing-6 #}
+                    <label for="district_id"
+                           class="form-label block text-gray-700 font-medium mb-spacing-2">District</label>
+                    {# Reusing form-label, utility classes #}
+                    {{ form.district_id(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.district_id.errors %}
+                        <div class="error-message text-red-500 text-sm mt-spacing-1">
+                            {# Reusing error-message, utility classes #}
+                            {% for error in form.district_id.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.submit(class="form-submit bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus:ring-blue-500") }}
+                    {# Reusing form-submit class #}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

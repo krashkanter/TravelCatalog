@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Add Food Item{% endblock %}
+
+{% block content %}
+    <div class="admin-page-content mb-spacing-8"> {# Reusing admin-page-content, mb-spacing-8 #}
+        <div class="page-header mb-spacing-6"> {# Reusing page-header, mb-spacing-6 #}
+            <h1 class="page-title font-bold mb-spacing-2">Add New Food Item</h1>
+            {# Reusing page-title, font-bold, mb-spacing-2 #}
+            <a href="{{ url_for('list_food', taluk_id=request.view_args.taluk_id) }}"
+               class="back-link text-blue-600 hover-underline">← Back to Food Items</a>
+            {# Reusing back-link, utility-like classes #}
+        </div>
+
+        <div class="admin-form-block bg-white rounded-lg shadow-md padding-6">
+            {# Reusing admin-form-block, utility-like classes #}
+            <form method="POST" action="{{ url_for('add_food', taluk_id=request.view_args.taluk_id) }}">
+                {{ form.hidden_tag() }}
+
+                <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                    <label for="name" class="form-label block text-gray-700 font-medium mb-spacing-2">Name</label>
+                    {# Reusing form-label, utility-like classes #}
+                    {{ form.name(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.name.errors %}
+                        <div class="error-message text-red-500 text-sm mt-spacing-1">
+                            {# Reusing error-message, utility-like classes #}
+                            {% for error in form.name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                    <label for="desc"
+                           class="form-label block text-gray-700 font-medium mb-spacing-2">Description</label>
+                    {# Reusing form-label, utility-like classes #}
+                    {{ form.desc(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", rows=5) }}
+                    {# Reusing form-input class #}
+                    {% if form.desc.errors %}
+                        <div class="error-message text-red-500 text-sm mt-spacing-1">
+                            {# Reusing error-message, utility-like classes #}
+                            {% for error in form.desc.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-spacing-6"> {# Reusing form-group, using mb-spacing-6 #}
+                    <label for="image_url" class="form-label block text-gray-700 font-medium mb-spacing-2">Image
+                        URL</label> {# Reusing form-label, utility-like classes #}
+                    {{ form.image_url(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.image_url.errors %}
+                        <div class="error-message text-red-500 text-sm mt-spacing-1">
+                            {# Reusing error-message, utility-like classes #}
+                            {% for error in form.image_url.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.submit(class="form-submit bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                    {# Reusing form-submit class #}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

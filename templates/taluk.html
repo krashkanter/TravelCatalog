@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taluk.name }}{% endblock %}
+
+{% block content %}
+    <div class="taluk-view mb-spacing-8"> {# Reusing taluk-view, using mb-spacing-8 #}
+        {# Taluk Header Section (Back link, Name, District) #}
+        <div class="taluk-header mb-spacing-8"> {# Reusing taluk-header, using mb-spacing-8 #}
+            <a href="{{ url_for('view_district', district_id=taluk.district_id) }}"
+               class="back-link inline-flex items-center text-blue-600 hover-underline mb-spacing-4">
+                {# Reusing back-link, utility-like classes #}
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-5 mr-spacing-1" viewBox="0 0 20 20"
+                     fill="currentColor"> {# Reusing utility classes for SVG #}
+                    <path fill-rule="evenodd"
+                          d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                          clip-rule="evenodd"></path>
+                </svg>
+                Back to {{ taluk.district_name }}
+            </a>
+
+            <h1 class="taluk-name-main font-bold mb-spacing-2 text-3xl">{{ taluk.name }}</h1>
+            {# Reusing taluk-name-main, utility-like classes #}
+            <p class="taluk-district-name text-gray-600 text-xl">{{ taluk.district_name }} District</p>
+            {# Reusing taluk-district-name, utility-like classes #}
+        </div>
+
+        {# Destinations Section #}
+        <div class="section-block mb-spacing-12"> {# Reusing section-block, using mb-spacing-12 #}
+            <h2 class="section-heading font-bold mb-spacing-4 text-2xl">Destinations</h2>
+            {# Reusing section-heading, utility-like classes #}
+            {# FIX: Check the 'destinations' variable directly #}
+            {% if destinations %}
+                {# FIX: Iterate over the 'destinations' variable directly #}
+                <div class="items-grid districts-grid gap-spacing-6">
+                    {# Reusing items-grid, districts-grid, gap-spacing-6 #}
+                    {% for destination in destinations %}
+                        <div class="item-card bg-white rounded-lg shadow-md overflow-hidden">
+                            {# Reusing item-card, utility-like classes #}
+                            {% if destination.image_url %}
+                                <div class="item-card-image-container w-full h-48 overflow-hidden">
+                                    {# Reusing image container classes #}
+                                    <img src="{{ destination.image_url }}" alt="{{ destination.title }}"
+                                         class="item-card-image w-full h-full object-cover"> {# Reusing image classes #}
+                                </div>
+                            {% else %}
+                                <div class="item-card-no-image w-full h-48 bg-gray-300 flex-items-center-justify-center">
+                                    {# Reusing no-image classes #}
+                                    <span class="text-gray-500">No image</span> {# Using text-gray-500 #}
+                                </div>
+                            {% endif %}
+                            <div class="item-card-body padding-4"> {# Reusing item-card-body, padding-4 #}
+                                <h3 class="item-title font-semibold mb-spacing-2 text-xl">{{ destination.title }}</h3>
+                                {# Reusing item-title, utility-like classes #}
+                                <p class="item-description text-gray-600">{{ destination.desc|truncate(100) }}</p>
+                                {# Reusing item-description, text-gray-600 #}
+                                {# No action links (Edit/Delete) on public view #}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-items-message text-gray-600">No destinations available for this taluk.</p>
+                {# Reusing no-items-message, text-gray-600 #}
+            {% endif %}
+        </div>
+
+        {# Local Cuisine Section #}
+        <div class="section-block mb-spacing-12"> {# Reusing section-block, using mb-spacing-12 #}
+            <h2 class="section-heading font-bold mb-spacing-4 text-2xl">Local Cuisine</h2>
+            {# Reusing section-heading, utility-like classes #}
+            {# FIX: Check the 'food_items' variable directly #}
+            {% if food_items %}
+                {# FIX: Iterate over the 'food_items' variable directly #}
+                <div class="items-grid districts-grid gap-spacing-6">
+                    {# Reusing items-grid, districts-grid, gap-spacing-6 #}
+                    {% for food in food_items %}
+                        <div class="item-card bg-white rounded-lg shadow-md overflow-hidden">
+                            {# Reusing item-card, utility-like classes #}
+                            {% if food.image_url %}
+                                <div class="item-card-image-container w-full h-48 overflow-hidden">
+                                    {# Reusing image container classes #}
+                                    <img src="{{ food.image_url }}" alt="{{ food.name }}"
+                                         class="item-card-image w-full h-full object-cover"> {# Reusing image classes #}
+                                </div>
+                            {% else %}
+                                <div class="item-card-no-image w-full h-48 bg-gray-300 flex-items-center-justify-center">
+                                    {# Reusing no-image classes #}
+                                    <span class="text-gray-500">No image</span> {# Using text-gray-500 #}
+                                </div>
+                            {% endif %}
+                            <div class="item-card-body padding-4"> {# Reusing item-card-body, padding-4 #}
+                                <h3 class="item-title font-semibold mb-spacing-2 text-xl">{{ food.name }}</h3>
+                                {# Reusing item-title, utility-like classes #}
+                                <p class="item-description text-gray-600">{{ food.desc|truncate(100) }}</p>
+                                {# Reusing item-description, text-gray-600 #}
+                                {# No action links (Edit/Delete) on public view #}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-items-message text-gray-600">No food items available for this taluk.</p>
+                {# Reusing no-items-message, text-gray-600 #}
+            {% endif %}
+        </div>
+
+        {# Accommodations Section #}
+        <div class="section-block mb-spacing-12"> {# Reusing section-block, using mb-spacing-12 #}
+            <h2 class="section-heading font-bold mb-spacing-4 text-2xl">Accommodations</h2>
+            {# Reusing section-heading, utility-like classes #}
+            {# FIX: Check the 'accommodations' variable directly #}
+            {% if accommodations %}
+                {# FIX: Iterate over the 'accommodations' variable directly #}
+                <div class="items-grid districts-grid gap-spacing-6">
+                    {# Reusing items-grid, districts-grid, gap-spacing-6 #}
+                    {% for accommodation in accommodations %}
+                        <div class="item-card bg-white rounded-lg shadow-md overflow-hidden">
+                            {# Reusing item-card, utility-like classes #}
+                            {% if accommodation.image_url %}
+                                <div class="item-card-image-container w-full h-48 overflow-hidden">
+                                    {# Reusing image container classes #}
+                                    <img src="{{ accommodation.image_url }}" alt="{{ accommodation.name }}"
+                                         class="item-card-image w-full h-full object-cover"> {# Reusing image classes #}
+                                </div>
+                            {% else %}
+                                <div class="item-card-no-image w-full h-48 bg-gray-300 flex-items-center-justify-center">
+                                    {# Reusing no-image classes #}
+                                    <span class="text-gray-500">No image</span> {# Using text-gray-500 #}
+                                </div>
+                            {% endif %}
+                            <div class="item-card-body padding-4"> {# Reusing item-card-body, padding-4 #}
+                                <h3 class="item-title font-semibold mb-spacing-2 text-xl">{{ accommodation.name }}</h3>
+                                {# Reusing item-title, utility-like classes #}
+                                {# Note: Accommodation uses 'details', not 'desc' #}
+                                <p class="item-description text-gray-600">{{ accommodation.details|truncate(100) }}</p>
+                                {# Reusing item-description, text-gray-600 #}
+                                {# No action links (Edit/Delete) on public view #}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-items-message text-gray-600">No accommodations available for this taluk.</p>
+                {# Reusing no-items-message, text-gray-600 #}
+            {% endif %}
+        </div>
+
+        {# Experiences Section #}
+        <div class="section-block mb-spacing-12"> {# Reusing section-block, using mb-spacing-12 #}
+            <h2 class="section-heading font-bold mb-spacing-4 text-2xl">Experiences</h2>
+            {# Reusing section-heading, utility-like classes #}
+            {# FIX: Check the 'experiences' variable directly #}
+            {% if experiences %}
+                {# FIX: Iterate over the 'experiences' variable directly #}
+                <div class="items-grid districts-grid gap-spacing-6">
+                    {# Reusing items-grid, districts-grid, gap-spacing-6 #}
+                    {% for experience in experiences %}
+                        <div class="item-card bg-white rounded-lg shadow-md overflow-hidden">
+                            {# Reusing item-card, utility-like classes #}
+                            {% if experience.image_url %}
+                                <div class="item-card-image-container w-full h-48 overflow-hidden">
+                                    {# Reusing image container classes #}
+                                    <img src="{{ experience.image_url }}" alt="{{ experience.name }}"
+                                         class="item-card-image w-full h-full object-cover"> {# Reusing image classes #}
+                                </div>
+                            {% else %}
+                                <div class="item-card-no-image w-full h-48 bg-gray-300 flex-items-center-justify-center">
+                                    {# Reusing no-image classes #}
+                                    <span class="text-gray-500">No image</span> {# Using text-gray-500 #}
+                                </div>
+                            {% endif %}
+                            <div class="item-card-body padding-4"> {# Reusing item-card-body, padding-4 #}
+                                <h3 class="item-title font-semibold mb-spacing-2 text-xl">{{ experience.name }}</h3>
+                                {# Reusing item-title, utility-like classes #}
+                                <p class="item-description text-gray-600">{{ experience.desc|truncate(100) }}</p>
+                                {# Reusing item-description, text-gray-600 #}
+                                {# No action links (Edit/Delete) on public view #}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-items-message text-gray-600">No experiences available for this taluk.</p>
+                {# Reusing no-items-message, text-gray-600 #}
+            {% endif %}
+        </div>
+
+
+        {# Comments Section #}
+        <div class="comments-section mb-spacing-8"> {# Reusing comments-section, mb-spacing-8 #}
+            <h2 class="comments-title font-bold mb-spacing-4 text-2xl">Comments</h2>
+            {# Reusing comments-title, utility-like classes #}
+
+            {# Comment Form #}
+            <div class="comment-form-container bg-white rounded-lg shadow-md padding-6 mb-spacing-6">
+                {# Reusing form container classes #}
+                <h3 class="comment-form-title font-semibold mb-spacing-4 text-xl">Leave a Comment</h3>
+                {# Reusing form title classes #}
+                <form method="POST" action="{{ url_for('view_taluk', taluk_id=taluk.id) }}">
+                    {# Action to post back to this page #}
+                    {{ form.hidden_tag() }}
+
+                    <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                        <label for="category"
+                               class="form-label block text-gray-700 font-medium mb-spacing-2">Category</label>
+                        {# Reusing form-label, utility classes #}
+                        {{ form.category(class="form-input w-full border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                        {# Reusing form-input classes #}
+                        {# Note: Form errors for category/content are not displayed in original snippet #}
+                        {% if form.category.errors %}
+                            <div class="error-message text-red-500 text-sm mt-spacing-1">
+                                {% for error in form.category.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                        <label for="content" class="form-label block text-gray-700 font-medium mb-spacing-2">Your
+                            Comment</label> {# Reusing form-label, utility classes #}
+                        {{ form.content(class="form-input w-full border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500", rows=4) }}
+                        {# Reusing form-input classes #}
+                        {% if form.content.errors %}
+                            <div class="error-message text-red-500 text-sm mt-spacing-1">
+                                {% for error in form.content.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div> {# Container for submit button #}
+                        {{ form.submit(class="form-submit bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                        {# Reusing form-submit classes #}
+                    </div>
+                </form>
+            </div>
+
+            {# Comments List #}
+            {% if comments %} {# Check the 'comments' variable directly #}
+                <div class="comments-list space-y-spacing-4"> {# Reusing comments-list, space-y-spacing-4 #}
+                    {# Iterate over the 'comments' variable directly #}
+                    {# Sorting is done in the Flask route, passing formatted timestamps #}
+                    {% for comment in comments %}
+                        <div class="comment-card bg-white rounded-lg shadow-md padding-4">
+                            {# Reusing comment-card, utility-like classes #}
+                            <div class="comment-header flex justify-between items-start mb-spacing-2">
+                                {# Reusing comment-header, utility-like classes #}
+                                <div class="comment-meta-left"> {# Reusing comment-meta-left #}
+                                    {# Access comment data using dictionary keys as fetched by SQL #}
+                                    <span class="comment-author font-semibold">{{ comment['author_name'] }}</span>
+                                    {# Reusing comment-author, font-semibold #}
+                                    <span class="comment-category text-gray-500 text-sm ml-spacing-2">on {{ comment['category'] }}</span>
+                                    {# Reusing comment-category, utility-like classes #}
+                                </div>
+                                {# Access comment timestamp using dictionary key #}
+                                <span class="comment-timestamp text-gray-500 text-sm">{{ comment['formatted_timestamp'] }}</span>
+                                {# Reusing comment-timestamp, utility-like classes #}
+                            </div>
+                            {# Access comment content using dictionary key #}
+                            <p class="comment-content text-gray-700">{{ comment['content'] }}</p>
+                            {# Reusing comment-content, text-gray-700 #}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="no-comments-message text-gray-600">No comments yet. Be the first to comment!</p>
+                {# Reusing no-comments-message, text-gray-600 #}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

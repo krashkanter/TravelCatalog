@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="auth-form-container mx-auto bg-white rounded-lg shadow-md padding-6"><h1
+            class="auth-title font-bold mb-spacing-6 text-center">Login</h1>
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group mb-spacing-4"><label for="email"
+                                                        class="form-label block text-gray-700 font-medium mb-spacing-2">Email</label> {{ form.email(class="form-input w-full border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                {% if form.email.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1"> {% for error in form.email.errors %}
+                        {{ error }}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group mb-spacing-6"><label for="password"
+                                                        class="form-label block text-gray-700 font-medium mb-spacing-2">Password</label> {{ form.password(class="form-input w-full border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                {% if form.password.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1">
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.submit(class="form-submit w-full rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }} </div>
+        </form>
+
+        <div class="auth-footer mt-spacing-4 text-center"><p>Don't have an account? <a href="{{ url_for('register') }}"
+                                                                                       class="auth-footer-link text-blue-600 hover-underline">Register
+            here</a></p></div>
+    </div>
+{% endblock %}

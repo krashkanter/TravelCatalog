@@ -1,0 +1,2285 @@
+/* Define some CSS variables for common values (optional but good practice) */
+:root {
+    --primary-gradient: linear-gradient(to right, #3b82f6, #2563eb); /* Example blue gradient */
+    --blue-600: #2563eb;
+    --blue-500: #3b82f6;
+    --blue-200: #bfdbfe;
+    --gray-800: #1f2937;
+    --gray-500: #6b7280;
+    --black-70-transparent: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+
+    /* Spacing scale (adjust as needed, based on common Tailwind values) */
+    --spacing-1: 0.25rem; /* Tailwind 1 */
+    --spacing-2: 0.5rem; /* Tailwind 2 */
+    --spacing-3: 0.75rem; /* Tailwind 3 */
+    --spacing-4: 1rem; /* Tailwind 4 */
+    --spacing-6: 1.5rem; /* Tailwind 6 */
+    --spacing-8: 2rem; /* Tailwind 8 */
+    --spacing-12: 3rem; /* Tailwind 12 */
+    --spacing-16: 4rem; /* Tailwind 16 */
+
+    /* Size scale (adjust as needed) */
+    --size-5: 1.25rem; /* Tailwind h-5/w-5 */
+    --height-56: 14rem; /* Tailwind h-56 */
+    --width-20: 5rem; /* Tailwind w-20 */
+    --height-1: 0.25rem; /* Tailwind h-1 */
+
+    /* Border Radius */
+    --rounded-2xl: 1rem;
+    --rounded-full: 9999px; /* Tailwind rounded-full */
+}
+
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    border-radius: var(--rounded-2xl);
+    overflow: hidden;
+    margin-bottom: var(--spacing-12);
+    background: var(--primary-gradient); /* Example: Using the variable */
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0; /* top: 0; right: 0; bottom: 0; left: 0; */
+    background-image: url('your-background-image.jpg'); /* Add your background image path */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    padding: var(--spacing-12) var(--spacing-8);
+    color: white; /* text-white */
+}
+
+.hero-title {
+    font-size: 2.25rem; /* text-4xl */
+    line-height: 2.5rem; /* text-4xl */
+    font-weight: 800; /* font-extrabold */
+    margin-bottom: var(--spacing-3);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+    max-width: 42rem; /* max-w-2xl */
+    margin-bottom: var(--spacing-6);
+}
+
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+}
+
+.explore-button {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-2-5, 0.625rem) var(--spacing-5, 1.25rem); /* px-5 py-2.5 */
+    background: var(--primary-gradient); /* Example: Using the variable for background */
+    color: white; /* text-white */
+    font-weight: 500; /* font-medium */
+    border-radius: var(--rounded-full);
+    text-decoration: none; /* Remove underline from link */
+    transition: all 0.2s ease-in-out; /* transition-all */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+
+.explore-button:hover {
+    background: linear-gradient(to right, var(--blue-700, #1d4ed8), var(--blue-600)); /* hover:from-blue-700 hover:to-blue-600 */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* hover:shadow-xl */
+}
+
+
+/* Icons within buttons/links */
+.icon-size-5 {
+    height: var(--size-5);
+    width: var(--size-5);
+}
+
+.mr-spacing-2 {
+    margin-right: var(--spacing-2);
+}
+
+.ml-spacing-2 {
+    margin-left: var(--spacing-2);
+}
+
+
+/* Districts Section */
+.districts-section {
+    margin-bottom: var(--spacing-16);
+}
+
+.section-title {
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    color: var(--gray-800); /* text-gray-800 */
+    margin-bottom: var(--spacing-8);
+    padding-bottom: var(--spacing-2);
+    position: relative;
+}
+
+.section-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: var(--width-20);
+    height: var(--height-1);
+    background-color: var(--blue-600); /* bg-blue-600 */
+    border-radius: var(--rounded-full);
+}
+
+.districts-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+    gap: var(--spacing-8);
+}
+
+/* Responsive Grid */
+@media (min-width: 640px) {
+    /* sm: breakpoint */
+    .districts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* sm:grid-cols-2 */
+    }
+}
+
+@media (min-width: 1024px) {
+    /* lg: breakpoint */
+    .districts-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+    }
+}
+
+
+/* District Card */
+.district-card {
+    /* Assuming a default background and shadow for the card */
+    background-color: white; /* Add a background */
+    border-radius: var(--rounded-box, 0.5rem); /* Example radius, adjust if needed */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Example shadow */
+    overflow: hidden; /* Ensure rounded corners work */
+}
+
+/* Grouping for hover effects */
+/* .group is used in HTML, but we target children on group hover in CSS */
+
+
+.card-image-container {
+    position: relative;
+    overflow: hidden;
+    height: var(--height-56);
+}
+
+.card-image {
+    width: 100%; /* w-full */
+    height: 100%; /* h-full */
+    object-fit: cover; /* object-cover */
+    transition-property: transform; /* transition-transform */
+    transition-duration: 500ms; /* duration-500 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* default ease-in-out */
+}
+
+/* Hover effect for image scale */
+.district-card:hover .card-image { /* group-hover:scale-110 */
+    transform: scale(1.1);
+}
+
+.card-no-image {
+    width: 100%; /* w-full */
+    height: 100%; /* h-full */
+    background: linear-gradient(to bottom right, var(--blue-100, #eff6ff), var(--blue-200)); /* bg-gradient-to-br from-blue-100 to-blue-200 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-no-image span {
+    font-size: 3rem; /* text-5xl - Adjust as needed */
+}
+
+
+.image-overlay {
+    position: absolute;
+    inset: 0; /* top, right, bottom, left: 0 */
+    background: var(--black-70-transparent); /* bg-gradient-to-t from-black/70 to-transparent */
+    opacity: 0; /* opacity-0 */
+    transition-property: opacity; /* transition-opacity */
+    transition-duration: 300ms; /* duration-300 */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* default ease-in-out */
+}
+
+/* Hover effect for overlay opacity */
+.district-card:hover .image-overlay { /* group-hover:opacity-100 */
+    opacity: 1;
+}
+
+
+.overlay-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: var(--spacing-6);
+}
+
+.overlay-title {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: white; /* text-white */
+    margin-bottom: var(--spacing-1);
+}
+
+.overlay-subtitle {
+    color: var(--blue-200); /* text-blue-200 */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+}
+
+.card-body {
+    padding: var(--spacing-6);
+}
+
+.card-title {
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    color: var(--gray-800); /* text-gray-800 */
+    margin-bottom: var(--spacing-1);
+}
+
+.card-subtitle {
+    color: var(--gray-500); /* text-gray-500 */
+    margin-bottom: var(--spacing-4);
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-2-5, 0.625rem) var(--spacing-5, 1.25rem); /* px-5 py-2.5 */
+    background: linear-gradient(to right, var(--blue-600), var(--blue-500)); /* bg-gradient-to-r from-blue-600 to-blue-500 */
+    color: white; /* text-white */
+    font-weight: 500; /* font-medium */
+    border-radius: var(--rounded-full);
+    text-decoration: none; /* Remove underline from link */
+    transition: all 0.2s ease-in-out; /* transition-all */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+}
+
+.card-link:hover {
+    background: linear-gradient(to right, var(--blue-700, #1d4ed8), var(--blue-600)); /* hover:from-blue-700 hover:to-blue-600 */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* hover:shadow-xl */
+}
+
+/* --- Utility-like classes for simplicity, you might integrate these --- */
+/* into the more semantic classes above if preferred */
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.left-0 {
+    left: 0;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.z-index-10 {
+    z-index: 10;
+}
+
+/* z-10 */
+
+.padding-x-8 {
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
+}
+
+.padding-y-12 {
+    padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
+}
+
+.padding-6 {
+    padding: var(--spacing-6);
+}
+
+.mb-spacing-1 {
+    margin-bottom: var(--spacing-1);
+}
+
+.mb-spacing-3 {
+    margin-bottom: var(--spacing-3);
+}
+
+.mb-spacing-4 {
+    margin-bottom: var(--spacing-4);
+}
+
+.mb-spacing-6 {
+    margin-bottom: var(--spacing-6);
+}
+
+.mb-spacing-8 {
+    margin-bottom: var(--spacing-8);
+}
+
+.mb-spacing-12 {
+    margin-bottom: var(--spacing-12);
+}
+
+.mb-spacing-16 {
+    margin-bottom: var(--spacing-16);
+}
+
+.pb-spacing-2 {
+    padding-bottom: var(--spacing-2);
+}
+
+
+.text-white {
+    color: white;
+}
+
+.text-gray-800 {
+    color: var(--gray-800);
+}
+
+.text-gray-500 {
+    color: var(--gray-500);
+}
+
+.text-blue-200 {
+    color: var(--blue-200);
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+/* Removed text-5xl from here as it was only used in the no-image span */
+
+
+.max-width-2xl {
+    max-width: 42rem;
+}
+
+/* max-w-2xl */
+
+.rounded-full {
+    border-radius: var(--rounded-full);
+}
+
+.rounded-box {
+    border-radius: var(--rounded-2xl);
+}
+
+/* Using the same variable for the card container */
+
+.flex-items-center {
+    display: flex;
+    align-items: center;
+}
+
+.flex-items-center-justify-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inline-flex-items-center {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.transition-transform {
+    transition-property: transform;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+}
+
+.transition-all {
+    transition-property: all;
+}
+
+.duration-500 {
+    transition-duration: 500ms;
+}
+
+.duration-300 {
+    transition-duration: 300ms;
+}
+
+.shadow-md {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hover\:shadow-xl:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Example hover shadow */
+
+.height-56 {
+    height: var(--height-56);
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+/* static/css/main.css */
+
+/* --- Basic Reset and Body Styles --- */
+body {
+    margin: 0; /* Ensure no default margin */
+    font-family: 'Inter', sans-serif;
+    /* Replicating: bg-gradient-to-br from-sky-100 to-white min-h-screen text-gray-800 */
+    background: linear-gradient(to bottom right, #eff6ff, #fff); /* Approximation of sky-100 to white gradient */
+    min-height: 100vh; /* min-h-screen */
+    color: #1f2937; /* text-gray-800 */
+}
+
+/* A simple container for centering and padding content */
+.container {
+    width: 100%;
+    max-width: 1280px; /* Example max-width, adjust based on your design */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem; /* px-6 (6 * 0.25rem = 1.5rem) */
+    padding-right: 1.5rem; /* px-6 */
+}
+
+/* --- Navbar Styles --- */
+.navbar {
+    /* Replicating: bg-gradient-to-r from-blue-700 to-blue-500 shadow-lg text-white */
+    background: linear-gradient(to right, #1d4ed8, #3b82f6); /* Approximation of blue-700 to blue-500 gradient */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    color: white; /* text-white */
+}
+
+.navbar-container {
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: center; /* items-center */
+    padding-top: 1rem; /* py-4 (4 * 0.25rem = 1rem) */
+    padding-bottom: 1rem; /* py-4 */
+    /* Uses the general .container padding for px-6 */
+}
+
+.navbar-brand {
+    /* Replicating: text-2xl font-extrabold tracking-wide */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 800; /* font-extrabold */
+    letter-spacing: 0.05em; /* tracking-wide */
+    text-decoration: none; /* Ensure no underline */
+    color: inherit; /* Inherit color from parent (white) */
+}
+
+.navbar-links {
+    display: flex; /* part of space-x-6 */
+    gap: 1.5rem; /* space-x-6 (6 * 0.25rem = 1.5rem) */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+}
+
+.nav-link {
+    color: inherit; /* Inherit color from parent (white) */
+    text-decoration: none;
+    transition-property: color, text-decoration; /* transition */
+    transition-duration: 150ms; /* default transition duration */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* default ease-in-out */
+}
+
+.nav-link:hover {
+    text-decoration: underline; /* hover:underline */
+    color: rgba(229, 231, 235, 1); /* hover:text-gray-200 */
+}
+
+.user-tag {
+    /* Replicating: bg-white text-blue-600 px-3 py-1 rounded-full */
+    background-color: white; /* bg-white */
+    color: #2563eb; /* text-blue-600 */
+    padding: 0.25rem 0.75rem; /* py-1 px-3 (1*0.25=0.25, 3*0.25=0.75) */
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 500; /* Keep font-medium from parent */
+}
+
+
+/* --- Main Content Styles --- */
+.main-container {
+    /* Uses the general .container padding for px-6 */
+    padding-top: 2.5rem; /* py-10 (10 * 0.25rem = 2.5rem) */
+    padding-bottom: 2.5rem; /* py-10 */
+}
+
+
+/* --- Flash Messages Styles --- */
+.flash-messages-container {
+    display: flex; /* part of space-y-4 */
+    flex-direction: column; /* part of space-y-4 */
+    gap: 1rem; /* space-y-4 (4 * 0.25rem = 1rem) */
+    margin-bottom: 2rem; /* mb-8 (8 * 0.25rem = 2rem) */
+}
+
+.flash-message {
+    /* Replicating: p-4 rounded-xl shadow-lg backdrop-blur-sm bg-white/80 border-l-4 */
+    padding: 1rem; /* p-4 */
+    border-radius: 0.75rem; /* rounded-xl (adjust if needed, Tailwind rounded-xl is 0.75rem) */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    backdrop-filter: blur(8px); /* backdrop-blur-sm (approximate) */
+    background-color: rgba(255, 255, 255, 0.8); /* bg-white/80 */
+    border-left-width: 4px; /* border-l-4 */
+    border-left-style: solid; /* Ensure border style is set */
+}
+
+/* Flash message category colors */
+.flash-message.success {
+    border-left-color: #22c55e; /* border-green-500 */
+    color: #15803d; /* text-green-700 */
+}
+
+.flash-message.danger {
+    border-left-color: #ef4444; /* border-red-500 */
+    color: #b91c1c; /* text-red-700 */
+}
+
+/* Default/Info category */
+.flash-message:not(.success):not(.danger) {
+    border-left-color: #3b82f6; /* border-blue-500 (assuming blue is default) */
+    color: #1d4ed8; /* text-blue-700 (assuming blue is default) */
+}
+
+/* Keep the fade-in animation styles */
+.flash-message.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Footer Styles --- */
+.footer-section {
+    /* Replicating: bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300 py-8 mt-20 shadow-inner */
+    background: linear-gradient(to right, #1f2937, #111827); /* Approximation of gray-800 to gray-900 gradient */
+    color: #d1d5db; /* text-gray-300 */
+    padding-top: 2rem; /* py-8 (8 * 0.25rem = 2rem) */
+    padding-bottom: 2rem; /* py-8 */
+    margin-top: 5rem; /* mt-20 (20 * 0.25rem = 5rem) */
+    box-shadow: inset 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* shadow-inner (approximate) */
+}
+
+.footer-container {
+    text-align: center; /* text-center */
+    display: flex; /* part of space-y-2 */
+    flex-direction: column; /* part of space-y-2 */
+    gap: 0.5rem; /* space-y-2 (2 * 0.25rem = 0.5rem) */
+    /* Uses the general .container padding for px-6 */
+}
+
+.footer-text {
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+}
+
+.footer-subtext {
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1rem; /* text-xs */
+    color: #9ca3af; /* text-gray-400 */
+}
+
+/* You would add the CSS for the districts section (from the previous answer) below this in main.css */
+
+/* static/css/main.css */
+
+/* ... (Include the CSS from the base.html and dashboard.html refactoring here) ... */
+
+
+/* --- District View Styles --- */
+
+/* mb-spacing-8 is defined in the base utility-like classes */
+
+.back-link {
+    /* Replicating: inline-flex items-center text-blue-600 hover:underline mb-4 */
+    display: inline-flex; /* inline-flex */
+    align-items: center; /* items-center */
+    color: var(--blue-600); /* text-blue-600 */
+    text-decoration: none; /* Default no underline */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+.back-link:hover {
+    text-decoration: underline; /* hover:underline */
+}
+
+/* icon-size-5 and mr-spacing-1 are defined in the base utility-like classes */
+
+
+.district-info {
+    /* Replicating: flex items-center mb-4 */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+.district-image {
+    /* Replicating: w-24 h-24 object-cover rounded-lg mr-6 */
+    width: 6rem; /* w-24 (24 * 0.25rem = 6rem) */
+    height: 6rem; /* h-24 */
+    object-fit: cover; /* object-cover */
+    border-radius: 0.5rem; /* rounded-lg (Tailwind default) */
+    margin-right: var(--spacing-6); /* mr-6 */
+}
+
+.district-name {
+    /* Replicating: text-3xl font-bold */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+}
+
+.district-taluk-count {
+    /* Replicating: text-gray-600 */
+    color: var(--gray-600, #4b5563); /* text-gray-600 (add variable if not exists) */
+}
+
+
+/* --- Taluks Section Styles --- */
+
+/* mb-spacing-8 is defined in the base utility-like classes */
+
+.taluks-title {
+    /* Replicating: text-2xl font-bold mb-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+.taluks-grid {
+    /* Replicating: grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 */
+    display: grid; /* grid */
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+    gap: var(--spacing-6); /* gap-6 */
+}
+
+/* Responsive Grid */
+@media (min-width: 768px) {
+    /* md: breakpoint */
+    .taluks-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+@media (min-width: 1024px) {
+    /* lg: breakpoint */
+    .taluks-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+    }
+}
+
+
+/* --- Taluk Card Styles --- */
+.taluk-card {
+    /* Replicating: bg-white rounded-lg shadow-md overflow-hidden */
+    background-color: white; /* bg-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    overflow: hidden; /* overflow-hidden */
+    padding: 2rem;
+}
+
+/* padding-4 is defined in the base utility-like classes */
+
+
+.taluk-name {
+    /* Replicating: text-xl font-semibold mb-2 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+}
+
+.taluk-details {
+    /* Replicating: text-gray-600 mb-4 */
+    color: var(--gray-600, #4b5563); /* text-gray-600 */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+
+.view-details-button {
+    /* Replicating: inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 */
+    display: inline-block; /* inline-block */
+    background-color: var(--blue-600); /* bg-blue-600 */
+    color: white; /* text-white */
+    padding: var(--spacing-2) var(--spacing-4); /* py-2 px-4 */
+    border-radius: 0.375rem; /* rounded-md (Tailwind default) */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.15s ease-in-out; /* Smooth transition */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.view-details-button:hover {
+    background-color: var(--blue-700, #1d4ed8); /* hover:bg-blue-700 (add variable if not exists) */
+}
+
+.view-details-button:focus {
+    outline: none; /* focus:outline-none */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); /* focus:ring-2 focus:ring-blue-500 (approximate focus ring) */
+}
+
+/* static/css/main.css */
+
+/* ... (Include the CSS from the base.html, dashboard.html, and district view refactoring here) ... */
+
+
+/* --- Auth Form (Login/Register) Styles --- */
+
+.auth-form-container {
+    /* Replicating: max-w-md mx-auto bg-white rounded-lg shadow-md p-6 */
+    max-width: 28rem; /* max-w-md (448px = 28rem) */
+    margin-left: auto; /* mx-auto */
+    margin-right: auto; /* mx-auto */
+    background-color: white; /* bg-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    padding: var(--spacing-6); /* p-6 */
+}
+
+.auth-title {
+    /* Replicating: text-2xl font-bold mb-6 text-center */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-6); /* mb-6 */
+    text-align: center; /* text-center */
+}
+
+.form-group {
+    /* Replicating: mb-4 / mb-6 */
+    /* margin-bottom handled by mb-spacing-4/6 utility classes */
+}
+
+.form-label {
+    /* Replicating: block text-gray-700 font-medium mb-2 */
+    display: block; /* block */
+    color: var(--gray-700, #374151); /* text-gray-700 (add variable if needed) */
+    font-weight: 500; /* font-medium */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+}
+
+.form-input {
+    /* Replicating: w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 */
+    display: block; /* Ensure it takes full width */
+    width: 100%; /* w-full */
+    padding: var(--spacing-2) var(--spacing-3); /* py-2 px-3 */
+    border: 1px solid var(--gray-300, #d1d5db); /* border border-gray-300 */
+    border-radius: 0.375rem; /* rounded-md */
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    /* focus styles are handled by focus-outline-none, focus-ring-2, focus-ring-blue-500 utility classes */
+}
+
+.error-message {
+    /* Replicating: text-red-500 text-sm mt-1 */
+    color: var(--red-500, #ef4444); /* text-red-500 (add variable if needed) */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+    margin-top: var(--spacing-1); /* mt-1 */
+}
+
+.form-submit {
+    /* Replicating: w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 */
+    display: block; /* w-full */
+    width: 100%; /* w-full */
+    background-color: var(--blue-600); /* bg-blue-600 */
+    color: white; /* text-white */
+    padding: var(--spacing-2) var(--spacing-4); /* py-2 px-4 */
+    border-radius: 0.375rem; /* rounded-md */
+    text-align: center; /* Center text if it's a link or div acting as button */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate clickable */
+    transition: background-color 0.15s ease-in-out; /* Smooth hover transition */
+    /* focus styles are handled by focus-outline-none, focus-ring-2, focus-ring-blue-500 utility classes */
+}
+
+.form-submit:hover {
+    background-color: var(--blue-700, #1d4ed8); /* hover:bg-blue-700 */
+}
+
+/* Focus styles for inputs and buttons (handled by utility-like classes if needed) */
+/*
+.focus-outline-none:focus { outline: none; }
+.focus-ring-2:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+.focus-ring-blue-500:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+*/
+
+
+.auth-footer {
+    /* Replicating: mt-4 text-center */
+    margin-top: var(--spacing-4); /* mt-4 */
+    text-align: center; /* text-center */
+}
+
+.auth-footer-link {
+    /* Replicating: text-blue-600 hover:underline */
+    color: var(--blue-600); /* text-blue-600 */
+    text-decoration: none; /* Default no underline */
+}
+
+.auth-footer-link:hover {
+    text-decoration: underline; /* hover:underline */
+}
+
+
+/* --- Utility-like classes used in this template (if not already in main.css) --- */
+
+/*
+.mx-auto { margin-left: auto; margin-right: auto; }
+.bg-white { background-color: white; }
+.rounded-lg { border-radius: 0.5rem; }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); }
+.padding-6 { padding: var(--spacing-6); }
+
+.font-bold { font-weight: 700; }
+.text-center { text-align: center; }
+
+.mb-spacing-6 { margin-bottom: var(--spacing-6); }
+.mb-spacing-4 { margin-bottom: var(--spacing-4); }
+.mb-spacing-2 { margin-bottom: var(--spacing-2); }
+.mt-spacing-4 { margin-top: var(--spacing-4); }
+.mt-spacing-1 { margin-top: var(--spacing-1); }
+
+.block { display: block; }
+.text-gray-700 { color: var(--gray-700, #374151); }
+.font-medium { font-weight: 500; }
+.w-full { width: 100%; }
+
+.border { border-width: 1px; border-style: solid; }
+.border-gray-300 { border-color: var(--gray-300, #d1d5db); }
+
+.text-red-500 { color: var(--red-500, #ef4444); }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-blue-600 { color: var(--blue-600); }
+
+.rounded-md { border-radius: 0.375rem; }
+
+.focus-outline-none:focus { outline: none; }
+.focus-ring-2:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); } /* Approximation */
+.focus-ring-blue-500:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* static/css/main.css */
+
+/* ... (Include the CSS from the base.html, dashboard.html, and district view refactoring here) ... */
+
+
+/* --- Taluk View Specific Styles --- */
+
+/* mb-spacing-8, back-link, icon-size-5, mr-spacing-1 are already defined */
+
+.taluk-header {
+    margin-bottom: var(--spacing-8);
+}
+
+.taluk-name-main {
+    /* Replicating: text-3xl font-bold mb-2 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+}
+
+.taluk-district-name {
+    /* Replicating: text-gray-600 */
+    color: var(--gray-600, #4b5563);
+}
+
+
+/* --- Item Section Styles (Destinations, Food, etc.) --- */
+
+.section-block {
+    /* Replicating: mb-12 */
+    margin-bottom: var(--spacing-12);
+}
+
+.section-heading {
+    /* Replicating: text-2xl font-bold mb-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+/* items-grid, districts-grid, gap-spacing-6, and their responsive media queries are already defined */
+
+
+.item-card {
+    /* Replicating: bg-white rounded-lg shadow-md overflow-hidden */
+    background-color: white;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    overflow: hidden;
+    display: flex; /* Use flexbox to stack image/no-image and body */
+    flex-direction: column;
+    height: 100%; /* Ensure cards in a grid have equal height if desired */
+}
+
+.item-card-image-container {
+    /* Replicating: w-full h-48 object-cover (on img) */
+    width: 100%; /* w-full */
+    height: 12rem; /* h-48 (48 * 0.25rem = 12rem) */
+    overflow: hidden; /* overflow-hidden */
+}
+
+.item-card-image {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* w-full */
+    height: 100%; /* h-48 */
+    object-fit: cover; /* object-cover */
+}
+
+
+.item-card-no-image {
+    /* Replicating: w-full h-48 bg-gray-300 flex items-center justify-center text-gray-500 */
+    width: 100%; /* w-full */
+    height: 12rem; /* h-48 */
+    background-color: var(--gray-300, #d1d5db); /* bg-gray-300 (add variable if needed) */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+    justify-content: center; /* justify-center */
+    color: var(--gray-500); /* text-gray-500 */
+    font-size: 1rem; /* Default text size */
+}
+
+.item-card-body {
+    /* Replicating: p-4 */
+    padding: var(--spacing-4);
+    flex-grow: 1; /* Allow body to take remaining height if item-card is flex column */
+}
+
+.item-title {
+    /* Replicating: text-xl font-semibold mb-2 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: var(--spacing-2);
+}
+
+.item-description {
+    /* Replicating: text-gray-600 */
+    color: var(--gray-600, #4b5563);
+}
+
+.no-items-message {
+    /* Replicating: text-gray-600 */
+    color: var(--gray-600, #4b5563);
+}
+
+
+/* --- Comments Section Styles --- */
+
+.comments-section {
+    /* Replicating: mb-8 */
+    margin-bottom: var(--spacing-8);
+}
+
+.comments-title {
+    /* Replicating: text-2xl font-bold mb-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+/* comment-form-container, comment-form-title, form-group, form-label, form-input, error-message, form-submit and their utility-like classes are reused from auth/login styles */
+
+
+.comments-list {
+    /* Replicating: space-y-4 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4); /* space-y-4 */
+}
+
+.comment-card {
+    /* Replicating: bg-white rounded-lg shadow-md p-4 */
+    background-color: white;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    padding: var(--spacing-4); /* p-4 */
+}
+
+.comment-header {
+    /* Replicating: flex justify-between items-start mb-2 */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* items-start */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    gap: var(--spacing-1); /* Add a small gap if items wrap */
+}
+
+.comment-meta-left {
+    /* Container for author and category */
+    /* Optional: display: flex; align-items: baseline; gap: var(--spacing-2); if you want them strictly inline */
+}
+
+.comment-author {
+    /* Replicating: font-semibold */
+    font-weight: 600;
+}
+
+.comment-category {
+    /* Replicating: text-gray-500 text-sm ml-2 */
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-left: var(--spacing-2);
+    white-space: nowrap; /* Prevent wrapping between category label and value */
+}
+
+.comment-timestamp {
+    /* Replicating: text-gray-500 text-sm */
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+
+.comment-content {
+    /* Replicating: text-gray-700 */
+    color: var(--gray-700, #374151);
+}
+
+.no-comments-message {
+    /* Replicating: text-gray-600 */
+    color: var(--gray-600, #4b5563);
+}
+
+/* --- Utility-like classes used in this template (if not already in main.css) --- */
+/* Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+
+/* static/css/main.css */
+
+/* ... (Include the CSS from base.html, dashboard.html, district view, and login/register refactoring here) ... */
+
+
+/* --- Admin Dashboard Styles --- */
+
+.admin-dashboard {
+    /* Replicating: mb-8 */
+    margin-bottom: var(--spacing-8);
+}
+
+.dashboard-title {
+    /* Replicating: text-3xl font-bold mb-4 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+.dashboard-subtitle {
+    /* Replicating: text-gray-600 mb-6 */
+    color: var(--gray-600, #4b5563);
+    margin-bottom: var(--spacing-6); /* mb-6 */
+}
+
+.dashboard-links-grid {
+    /* Replicating: grid grid-cols-1 md:grid-cols-2 gap-6 */
+    /* Reusing 'districts-grid' base styles for grid and gap */
+    /* Override grid columns for admin dashboard specifically */
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+}
+
+/* Override grid columns for md breakpoint */
+@media (min-width: 768px) {
+    /* md: breakpoint */
+    .dashboard-links-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+/* Note: lg: breakpoint from districts-grid won't apply here unless you add it specifically */
+
+
+.dashboard-link-card {
+    /* Replicating: bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow */
+    display: block; /* Ensure the whole card is clickable */
+    text-decoration: none; /* Remove default link underline */
+    color: inherit; /* Inherit text color from body/container */
+
+    /* Reusing utility-like styles */
+    background-color: white; /* bg-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    padding: var(--spacing-6); /* p-6 */
+    transition-property: box-shadow; /* transition-shadow */
+    transition-duration: 150ms; /* default transition duration */
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* default ease-in-out */
+}
+
+.dashboard-link-card:hover {
+    /* Replicating: hover:shadow-lg */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+}
+
+/* item-title, font-semibold, mb-spacing-2 are already defined */
+/* item-description, text-gray-600 are already defined */
+
+/* --- Utility-like classes used in this template (if not already in main.css) --- */
+/* Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+
+/* static/css/main.css */
+
+/* ... (Include the CSS from previous refactorings here, including utility-like classes for spacing, text, background, border, shadow, flex, etc.) ... */
+
+
+/* --- Admin List Page Styles (e.g., Manage Taluks) --- */
+
+.admin-list-page {
+    /* Replicating: mb-8 */
+    margin-bottom: var(--spacing-8);
+}
+
+.list-header {
+    /* Replicating: flex justify-between items-center mb-6 */
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: center; /* items-center */
+    margin-bottom: var(--spacing-6); /* mb-6 */
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    gap: var(--spacing-4); /* Add gap when wrapped */
+}
+
+.list-header-left {
+    /* Container for title and back link */
+}
+
+.list-title {
+    /* Replicating: text-3xl font-bold mb-2 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+}
+
+/* back-link, text-blue-600, hover-underline are already defined */
+
+/* add-button and its hover/focus styles are already defined */
+
+
+.data-table-container {
+    /* Replicating: bg-white rounded-lg shadow-md overflow-hidden */
+    background-color: white; /* bg-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    overflow-x: auto; /* Add horizontal scroll for small screens */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    /* overflow-hidden on parent is kept in HTML */
+}
+
+.data-table {
+    /* Replicating: min-w-full divide-y divide-gray-200 */
+    width: 100%; /* min-w-full */
+    min-width: max-content; /* Prevent table from shrinking below content */
+    border-collapse: collapse; /* collapse table borders */
+    /* divide-y and divide-gray-200 are handled by adding borders to cells */
+}
+
+.table-header {
+    /* Replicating: bg-gray-50 */
+    background-color: var(--gray-50, #f9fafb); /* bg-gray-50 (add variable if needed) */
+}
+
+.table-header-cell {
+    /* Replicating: px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider */
+    padding: var(--spacing-3) var(--spacing-6); /* py-3 px-6 */
+    text-align: left; /* text-left */
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1rem; /* text-xs */
+    font-weight: 500; /* font-medium */
+    color: var(--gray-500); /* text-gray-500 */
+    text-transform: uppercase; /* uppercase */
+    letter-spacing: 0.05em; /* tracking-wider */
+    border-bottom: 1px solid var(--gray-200, #e5e7eb); /* Add bottom border for divide-y */
+}
+
+.table-body {
+    /* Replicating: bg-white divide-y divide-gray-200 */
+    background-color: white; /* bg-white */
+    /* divide-y divide-gray-200 is handled by adding borders to rows/cells */
+}
+
+.table-row {
+    /* No specific style needed here unless you want hover effects on rows */
+}
+
+.table-row:last-child .table-cell {
+    border-bottom: none; /* Remove bottom border on the last row's cells */
+}
+
+.table-cell {
+    /* Replicating: px-6 py-4 whitespace-nowrap text-sm */
+    padding: var(--spacing-4) var(--spacing-6); /* py-4 px-6 */
+    white-space: nowrap; /* whitespace-nowrap */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+    color: var(--gray-900, #111827); /* Default text color for cells (text-gray-900) */
+    border-bottom: 1px solid var(--gray-200, #e5e7eb); /* Add bottom border for divide-y */
+}
+
+.table-cell div {
+    /* Styles for div wrappers within cells if needed, e.g., text-sm font-medium text-gray-900 */
+    /* These are often inherited or applied directly to the div/span */
+}
+
+
+.cell-content-links {
+    /* Replicating: flex space-x-2 */
+    display: flex;
+    gap: var(--spacing-2); /* space-x-2 */
+    flex-wrap: wrap; /* Allow badges to wrap */
+}
+
+.content-link {
+    /* Replicating base styles for content links (text-xs, px-2, py-1, rounded) */
+    display: inline-block; /* Ensure padding works */
+    font-size: 0.75rem; /* text-xs */
+    line-height: 1rem; /* text-xs */
+    padding: var(--spacing-1) var(--spacing-2); /* py-1 px-2 */
+    border-radius: 0.25rem; /* rounded */
+    text-decoration: none; /* Remove underline */
+    font-weight: 500; /* Match Tailwind default for these badges */
+}
+
+/* Specific colors for content links */
+.content-link-blue {
+    /* Replicating: bg-blue-100 text-blue-800 */
+    background-color: var(--blue-100, #dbeafe); /* bg-blue-100 (add variable if needed) */
+    color: var(--blue-800, #1e40af); /* text-blue-800 (add variable if needed) */
+}
+
+.content-link-green {
+    /* Replicating: bg-green-100 text-green-800 */
+    background-color: var(--green-100, #dcfce7); /* bg-green-100 (add variable if needed) */
+    color: var(--green-800, #166534); /* text-green-800 (add variable if needed) */
+}
+
+.content-link-yellow {
+    /* Replicating: bg-yellow-100 text-yellow-800 */
+    background-color: var(--yellow-100, #fef9c3); /* bg-yellow-100 (add variable if needed) */
+    color: var(--yellow-800, #92400e); /* text-yellow-800 (add variable if needed) */
+}
+
+.content-link-purple {
+    /* Replicating: bg-purple-100 text-purple-800 */
+    background-color: var(--purple-100, #ede9fe); /* bg-purple-100 (add variable if needed) */
+    color: var(--purple-800, #5b21b6); /* text-purple-800 (add variable if needed) */
+}
+
+
+.edit-link {
+    /* Replicating: text-blue-600 hover:underline mr-4 */
+    color: var(--blue-600);
+    text-decoration: none;
+    margin-right: var(--spacing-4); /* mr-4 */
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.delete-form {
+    /* Replicating: inline */
+    display: inline;
+}
+
+.delete-button {
+    /* Replicating: text-red-600 hover:underline */
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove default button padding */
+    cursor: pointer; /* Indicate clickable */
+    color: var(--red-600, #dc2626); /* text-red-600 (add variable if needed) */
+    text-decoration: none; /* Default no underline */
+    font-size: 0.875rem; /* text-sm (inherited from parent td, but explicit here) */
+    line-height: 1.25rem; /* text-sm */
+}
+
+.delete-button:hover {
+    text-decoration: underline;
+}
+
+
+/* --- No Items Block Styles --- */
+.no-items-block {
+    /* Replicating: bg-white rounded-lg shadow-md p-6 text-center */
+    background-color: white;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    padding: var(--spacing-6); /* p-6 */
+    text-align: center; /* text-center */
+}
+
+.no-items-message {
+    /* Replicating: text-gray-600 mb-4 */
+    color: var(--gray-600, #4b5563);
+    margin-bottom: var(--spacing-4); /* mb-4 */
+}
+
+.add-button-inline {
+    display: inline-block; /* inline-block */
+    /* Inherits button styles from add-button */
+}
+
+.district-cell-content {
+    /* Replicating: flex items-center */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+}
+
+.district-image-thumbnail {
+    /* Replicating: h-10 w-10 rounded-full object-cover mr-3 */
+    /* These are often defined as utility-like classes in main.css */
+    height: 2.5rem; /* h-10 */
+    width: 2.5rem; /* w-10 */
+    border-radius: 9999px; /* rounded-full */
+    object-fit: cover; /* object-cover */
+    margin-right: var(--spacing-3); /* mr-3 */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.item-actions {
+    /* Replicating: flex space-x-2 */
+    display: flex; /* flex */
+    gap: var(--spacing-2); /* space-x-2 */
+    margin-top: var(--spacing-4); /* Add spacing above actions if needed, replicate mb-4 on description p */
+    flex-wrap: wrap; /* Allow links to wrap on small screens */
+}
+
+.admin-page-content {
+    /* Replicating mb-8 on the top-level div */
+    margin-bottom: var(--spacing-8);
+}
+
+.page-header {
+    /* Replicating mb-6 on the header div */
+    margin-bottom: var(--spacing-6);
+    /* No flex/justify needed here based on HTML structure */
+}
+
+.page-title {
+    /* Replicating text-3xl font-bold mb-2 on the h1 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+}
+
+/* back-link, text-blue-600, hover-underline are already defined */
+
+
+/* --- Admin Form Block --- */
+/* Used for containers wrapping forms in admin sections */
+.admin-form-block {
+    /* Replicating: bg-white rounded-lg shadow-md p-6 */
+    background-color: white; /* bg-white */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05); /* shadow-md */
+    padding: var(--spacing-6); /* p-6 */
+    /* max-width and mx-auto are NOT applied here by default, as the form block fills its container */
+}
+
+.form-actions {
+    /* Replicating: flex items-center justify-between */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+    justify-content: space-between; /* justify-between */
+    flex-wrap: wrap; /* Allow items to wrap on small screens */
+    gap: var(--spacing-4); /* Add gap when wrapped */
+}
+
+/* Reusing form-submit styles for the submit button */
+
+.cancel-link {
+    /* Replicating: text-gray-600 hover:underline */
+    color: var(--gray-600, #4b5563); /* text-gray-600 */
+    text-decoration: none; /* Default no underline */
+    font-size: 0.875rem; /* text-sm - often cancel links are smaller, adjust if needed */
+    line-height: 1.25rem; /* text-sm */
+}
+
+.cancel-link:hover {
+    text-decoration: underline; /* hover:underline */
+}
+
+/* static/css/main.css */
+
+/* ... (Include all your existing utility-like classes and component styles here) ... */
+
+/* --- Base Layout Styles for Sticky Footer --- */
+
+body {
+    /* Replicating some Tailwind body styles */
+    font-family: 'Inter', sans-serif; /* Ensure font is applied */
+    color: var(--gray-800, #1f2937); /* text-gray-800 (add variable if needed) */
+
+    /* Sticky Footer Flexbox setup */
+    display: flex; /* Arrange children using Flexbox */
+    flex-direction: column; /* Stack children vertically (nav, main, footer) */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+
+    /* Optional: Add background gradient if desired */
+    background-image: linear-gradient(to bottom right, var(--sky-100, #e0f2f7), var(--white, #ffffff)); /* bg-gradient-to-br from-sky-100 to-white (add variables if needed) */
+}
+
+.main-container {
+    /* Allow the main content area to grow and push the footer down */
+    flex-grow: 1;
+    /* The 'container' class should provide padding/max-width/centering */
+}
+
+.footer-section {
+    /* Footer styles - flexbox is handled by the body. No specific flex properties needed here. */
+    /* Ensure the footer has a defined height or content so it takes up space */
+    flex-shrink: 0; /* Prevent footer from shrinking if content overflows */
+}
+
+
+.flash-messages-container {
+    margin-bottom: var(--spacing-6); /* Add some space below flash messages */
+    /* Add padding/margins if needed for the container itself */
+}
+
+.flash-message {
+    /* Basic styling for flash messages */
+    padding: var(--spacing-3); /* py-3 px-4 */
+    margin-bottom: var(--spacing-3); /* Add space between messages */
+    border-radius: var(--rounded-md, 0.375rem); /* rounded-md */
+    font-weight: 500; /* font-medium */
+    opacity: 0; /* Start hidden for fade-in */
+    transform: translateY(-10px); /* Start slightly above for animation */
+}
+
+/* Specific colors based on category */
+.flash-message.success {
+    background-color: var(--green-100, #dcfce7); /* bg-green-100 */
+    color: var(--green-800, #166534); /* text-green-800 */
+}
+
+.flash-message.danger { /* Use danger for red messages */
+    background-color: var(--red-100, #fee2e2); /* bg-red-100 */
+    color: var(--red-800, #991b1b); /* text-red-800 */
+}
+
+.flash-message.warning { /* Use warning for yellow messages */
+    background-color: var(--yellow-100, #fef9c3); /* bg-yellow-100 */
+    color: var(--yellow-800, #92400e); /* text-yellow-800 */
+}
+
+.flash-message.info { /* Use info for blue/sky messages */
+    background-color: var(--blue-100, #dbeafe); /* bg-blue-100 */
+    color: var(--blue-800, #1e40af); /* text-blue-800 */
+}
+
+
+/* Animation definition (Moved from <style> block) */
+.flash-message.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.auth-form-container, .admin-form-block {
+    max-width: var(--max-w-md, 28rem); /* max-w-md default, adjust if needed */
+    margin-left: auto;
+    margin-right: auto; /* mx-auto */
+    background-color: var(--white); /* bg-white */
+    border-radius: var(--rounded-lg); /* rounded-lg */
+    box-shadow: var(--shadow-md); /* shadow-md */
+    padding: var(--spacing-6); /* p-6 */
+}
+
+.admin-list-page {
+    margin-bottom: var(--spacing-8);
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-6);
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+}
+
+.list-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-2);
+}
+
+.items-grid.districts-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: var(--spacing-6);
+}
+
+@media (min-width: 768px) {
+    .items-grid.districts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .items-grid.districts-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+
+.item-card {
+    background-color: white;
+    border-radius: 32;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.item-actions {
+    display: flex;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-4);
+    flex-wrap: wrap;
+}
+
+.no-items-block {
+    background-color: white;
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-6);
+    text-align: center;
+}
+
+.no-items-message {
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-4);
+}
+
+.add-button-inline {
+    display: inline-block;
+}
+
+.data-table-container {
+    background-color: white;
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+    width: 100%;
+    min-width: max-content;
+    border-collapse: collapse;
+}
+
+.table-header {
+    background-color: var(--gray-50);
+}
+
+.table-header-cell {
+    padding: var(--spacing-3) var(--spacing-6);
+    text-align: left;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.table-body {
+    background-color: white;
+}
+
+.table-cell {
+    padding: var(--spacing-4) var(--spacing-6);
+    white-space: nowrap;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--gray-900);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.table-row:last-child .table-cell {
+    border-bottom: none;
+}
+
+.cell-content-links {
+    display: flex;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+}
+
+.content-link {
+    display: inline-block;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--rounded);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.district-cell-content {
+    display: flex;
+    align-items: center;
+}
+
+.district-image-thumbnail {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: var(--rounded-full);
+    object-fit: cover;
+    margin-right: var(--spacing-3);
+    flex-shrink: 0;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+}
+
+.cancel-link {
+    color: var(--gray-600);
+    text-decoration: none;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Note: Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+/* static/css/main.css */
+
+/* ... (Include all your existing utility-like classes and component styles here) ... */
+
+/* --- District View Page Styles --- */
+
+.district-view {
+    /* Replicating mb-8 */
+    margin-bottom: var(--spacing-8);
+}
+
+/* back-link, inline-flex, items-center, text-blue-600, hover-underline, mb-spacing-4 are already defined */
+/* icon-size-5, mr-spacing-1 (for SVG) should be defined as utility classes */
+
+
+.district-info {
+    /* Replicating flex items-center mb-4 */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+    flex-wrap: wrap; /* Allow flex items to wrap on small screens */
+    gap: var(--spacing-4); /* Add gap between items when wrapped */
+}
+
+.district-image {
+    /* Replicating rounded-lg mr-6 */
+    border-radius: var(--rounded-lg); /* rounded-lg */
+    margin-right: var(--spacing-6); /* mr-6 */
+    width: 100px; /* Example size, adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 150px; /* Max size example */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.district-details {
+    /* No specific flex properties needed, will take remaining space */
+}
+
+.district-name {
+    /* Replicating font-bold text-3xl */
+    font-weight: 700; /* font-bold */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+    margin-bottom: var(--spacing-2); /* Optional: add small margin below name */
+}
+
+.district-taluk-count {
+    /* Replicating text-gray-600 text-xl */
+    color: var(--gray-600, #4b5563); /* text-gray-600 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+}
+
+
+.taluks-section {
+    /* Replicating mb-8 */
+    margin-bottom: var(--spacing-8);
+}
+
+.taluks-title {
+    /* Replicating font-bold mb-4 text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+}
+
+
+.taluks-grid {
+    /* Replicating grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 */
+    display: grid; /* grid */
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
+    gap: var(--spacing-6); /* gap-6 */
+}
+
+/* Responsive grid columns */
+@media (min-width: 768px) {
+    /* md: breakpoint */
+    .taluks-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+    }
+}
+
+@media (min-width: 1024px) {
+    /* lg: breakpoint */
+    .taluks-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* lg:grid-cols-3 */
+    }
+}
+
+
+.taluk-card {
+    /* Replicating rounded-lg shadow-md overflow-hidden bg-white */
+    border-radius: 32; /* rounded-lg */
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05)); /* shadow-md */
+    overflow: hidden; /* overflow-hidden */
+    background-color: var(--white, #ffffff); /* bg-white */
+    display: flex; /* Use flex to make card body fill height if needed */
+    flex-direction: column;
+    height: 100%; /* Ensure cards in a row have equal height */
+}
+
+.taluk-card-body {
+    /* Replicating p-4 */
+    padding: var(--spacing-4); /* p-4 */
+    flex-grow: 1; /* Allow body to grow if card height is set */
+}
+
+.taluk-name {
+    /* Replicating font-semibold mb-2 text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: var(--spacing-2); /* mb-2 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+}
+
+.taluk-details {
+    /* Replicating text-gray-600 mb-4 text-base (text-base is default) */
+    color: var(--gray-600, #4b5563); /* text-gray-600 */
+    margin-bottom: var(--spacing-4); /* mb-4 */
+    font-size: 1rem; /* text-base (default) */
+    line-height: 1.5rem; /* text-base (default) */
+}
+
+/* Paragraphs inside .taluk-details inherit styles */
+
+/* view-details-button and its styles are already defined/reused from item list pages */
+
+
+/* --- Utility-like classes used in this template (if not already in main.css) --- */
+/* Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+
+/*
+:root { ... } // Define variables if not already present
+
+// Spacing utilities (examples)
+.mb-spacing-8 { margin-bottom: var(--spacing-8); }
+.mb-spacing-6 { margin-bottom: var(--spacing-6); }
+.mb-spacing-4 { margin-bottom: var(--spacing-4); }
+.mb-spacing-2 { margin-bottom: var(--spacing-2); }
+.mr-spacing-1 { margin-right: var(--spacing-1); }
+.mr-spacing-6 { margin-right: var(--spacing-6); } // For district image margin
+.gap-spacing-6 { gap: var(--spacing-6); } // For grid/flex gap
+.padding-4 { padding: var(--spacing-4); }
+
+// Flexbox utilities (examples)
+.inline-flex { display: inline-flex; } // For back link
+.flex { display: flex; } // For district info
+.items-center { align-items: center; } // For district info
+.inline-block { display: inline-block; } // For button
+
+// Typography/Color utilities (examples)
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.text-blue-600 { color: var(--blue-600); }
+.text-gray-600 { color: var(--gray-600); }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; } // Default, but explicit here
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+
+.hover-underline:hover { text-decoration: underline; }
+
+// Icon sizing (example - assuming this utility is defined for SVG/icons)
+.icon-size-5 {
+    height: 1.25rem; // 20px
+    width: 1.25rem; // 20px
+}
+
+
+// Backgrounds (examples)
+.bg-white { background-color: white; }
+.bg-blue-600 { background-color: var(--blue-600); }
+.hover-bg-blue-700:hover { background-color: var(--blue-700); }
+
+
+// Borders/Shadows (examples)
+.rounded-lg { border-radius: var(--rounded-lg); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.overflow-hidden { overflow: hidden; }
+.rounded-md { border-radius: var(--rounded-md); }
+
+
+// Focus styles (examples)
+.focus-outline-none:focus { outline: none; }
+.focus-ring-2:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); } // Approximation
+.focus-ring-blue-500:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); } // Approximation
+
+
+// Reused button/link styles from admin lists (examples)
+.view-details-button {
+    // Replicating inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:...
+     display: inline-block;
+     background-color: var(--blue-600);
+     color: var(--white);
+     padding: var(--spacing-2) var(--spacing-4);
+     border-radius: var(--rounded-md);
+     text-decoration: none; /* Remove underline */
+font-weight:
+
+500
+;
+text-align: center
+
+;
+transition: background-color
+
+0.15
+s ease-in-out, box-shadow
+
+0.15
+s ease-in-out
+
+;
+}
+.view-details-button:hover {
+    background-color: var(--blue-700);
+}
+
+.view-details-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+/* Note: Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+
+/* static/css/main.css */
+
+/* ... (Include all your existing utility-like classes and component styles here) ... */
+
+
+/* --- Taluk View Page Styles --- */
+
+.taluk-view {
+    /* No specific styles needed here beyond potential padding if 'container' isn't wrapping content blocks */
+    /* mb-spacing-8 applied as utility */
+}
+
+/* taluk-header, back-link, inline-flex, items-center, text-blue-600, hover-underline, mb-spacing-4,
+   icon-size-5, mr-spacing-1 (for SVG) are already defined or utilities */
+
+.taluk-name-main {
+    /* Replicating font-bold mb-spacing-2 text-3xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-2); /* mb-spacing-2 */
+    font-size: 1.875rem; /* text-3xl */
+    line-height: 2.25rem; /* text-3xl */
+}
+
+.taluk-district-name {
+    /* Replicating text-gray-600 text-xl */
+    color: var(--gray-600, #4b5563); /* text-gray-600 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+}
+
+.section-block {
+    /* Replicating mb-spacing-12 */
+    margin-bottom: var(--spacing-12); /* mb-spacing-12 */
+}
+
+.section-heading {
+    /* Replicating font-bold mb-spacing-4 text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-spacing-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+}
+
+/* items-grid, districts-grid, gap-spacing-6 are already defined for responsive grid layout */
+/* item-card, item-card-image-container, item-card-image, item-card-no-image, item-card-body,
+   item-title, item-description are already defined for item card appearance */
+/* no-items-message, text-gray-600 are already defined */
+
+
+/* --- Comments Section Styles --- */
+.comments-section {
+    /* Replicating mb-spacing-8 */
+    margin-bottom: var(--spacing-8); /* mb-spacing-8 */
+}
+
+.comments-title {
+    /* Replicating font-bold mb-spacing-4 text-2xl */
+    font-weight: 700; /* font-bold */
+    margin-bottom: var(--spacing-4); /* mb-spacing-4 */
+    font-size: 1.5rem; /* text-2xl */
+    line-height: 2rem; /* text-2xl */
+}
+
+.comment-form-container {
+    /* Replicating bg-white rounded-lg shadow-md padding-6 mb-spacing-6 */
+    background-color: var(--white, #ffffff); /* bg-white */
+    border-radius: var(--rounded-lg, 0.5rem); /* rounded-lg */
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05)); /* shadow-md */
+    padding: var(--spacing-6); /* padding-6 */
+    margin-bottom: var(--spacing-6); /* mb-spacing-6 */
+}
+
+.comment-form-title {
+    /* Replicating font-semibold mb-spacing-4 text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: var(--spacing-4); /* mb-spacing-4 */
+    font-size: 1.25rem; /* text-xl */
+    line-height: 1.75rem; /* text-xl */
+}
+
+/* form-group, mb-spacing-4, form-label, block, text-gray-700, font-medium, mb-spacing-2,
+   form-input, w-full, border, border-gray-300, rounded-md, focus-*, form-submit,
+   bg-blue-600, text-white, py-2, px-4, rounded-md, hover-bg-blue-700, error-message,
+   text-red-500, text-sm, mt-spacing-1 are already defined or utilities */
+
+
+.comments-list {
+    /* Replicating space-y-spacing-4 */
+    /* space-y-spacing-4 handles margin-top for children */
+}
+
+.comment-card {
+    /* Replicating bg-white rounded-lg shadow-md padding-4 */
+    background-color: var(--white, #ffffff); /* bg-white */
+    border-radius: var(--rounded-lg, 0.5rem); /* rounded-lg */
+    box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05)); /* shadow-md */
+    padding: var(--spacing-4); /* padding-4 */
+}
+
+.comment-header {
+    /* Replicating flex justify-between items-start mb-spacing-2 */
+    display: flex; /* flex */
+    justify-content: space-between; /* justify-between */
+    align-items: flex-start; /* items-start */
+    margin-bottom: var(--spacing-2); /* mb-spacing-2 */
+    flex-wrap: wrap; /* Allow elements to wrap */
+    gap: var(--spacing-2); /* Add gap if wrapped */
+}
+
+.comment-meta-left {
+    /* Container for author and category */
+    /* No specific styles needed beyond containing children */
+}
+
+.comment-author {
+    /* Replicating font-semibold */
+    font-weight: 600; /* font-semibold */
+}
+
+.comment-category {
+    /* Replicating text-gray-500 text-sm ml-spacing-2 */
+    color: var(--gray-500, #6b7280); /* text-gray-500 */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+    margin-left: var(--spacing-2); /* ml-spacing-2 */
+}
+
+.comment-timestamp {
+    /* Replicating text-gray-500 text-sm */
+    color: var(--gray-500, #6b7280); /* text-gray-500 */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem; /* text-sm */
+}
+
+.comment-content {
+    /* Replicating text-gray-700 */
+    color: var(--gray-700, #374151); /* text-gray-700 */
+    /* No margin/padding needed if it's the only child or uses default p styles */
+    margin-top: var(--spacing-2); /* Add some space above content if needed */
+}
+
+/* no-comments-message, text-gray-600 are already defined */
+
+
+/* --- Utility-like classes used in this template (if not already in main.css) --- */
+/* Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */
+
+/*
+:root { ... } // Define variables if not already present
+
+// Spacing utilities (examples)
+.mb-spacing-8 { margin-bottom: var(--spacing-8); }
+.mb-spacing-6 { margin-bottom: var(--spacing-6); }
+.mb-spacing-4 { margin-bottom: var(--spacing-4); }
+.mb-spacing-2 { margin-bottom: var(--spacing-2); }
+.mb-spacing-12 { margin-bottom: var(--spacing-12); } // New spacing needed
+.mr-spacing-1 { margin-right: var(--spacing-1); }
+.ml-spacing-2 { margin-left: var(--spacing-2); } // New spacing needed
+.gap-spacing-6 { gap: var(--spacing-6); } // Grid/Flex gap
+.padding-4 { padding: var(--spacing-4); }
+.padding-6 { padding: var(--spacing-6); }
+.space-y-spacing-4 > :not(:first-child) { margin-top: var(--spacing-4); } // For comments list
+
+// Flexbox utilities (examples)
+.inline-flex { display: inline-flex; } // For back link
+.flex { display: flex; } // For comment header
+.justify-between { justify-content: space-between; } // For comment header
+.items-center { align-items: center; } // For flex items
+.items-start { align-items: flex-start; } // For comment header
+.flex-items-center-justify-center { display: flex; align-items: center; justify-content: center; } // For no image div
+
+// Typography/Color utilities (examples)
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+.text-blue-600 { color: var(--blue-600); }
+.text-gray-600 { color: var(--gray-600); }
+.text-gray-500 { color: var(--gray-500); } // New color utility
+.text-gray-700 { color: var(--gray-700); } // New color utility
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-base { font-size: 1rem; line-height: 1.5rem; } // Default
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+
+.hover-underline:hover { text-decoration: underline; }
+
+// Icon sizing (example - assuming this utility is defined for SVG/icons)
+.icon-size-5 { height: 1.25rem; width: 1.25rem; }
+
+// Backgrounds (examples)
+.bg-white { background-color: white; }
+.bg-gray-300 { background-color: var(--gray-300); } // For no image background
+.bg-blue-600 { background-color: var(--blue-600); }
+.hover-bg-blue-700:hover { background-color: var(--blue-700); }
+
+
+// Borders/Shadows (examples)
+.rounded-lg { border-radius: var(--rounded-lg); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.overflow-hidden { overflow: hidden; }
+.rounded-md { border-radius: var(--rounded-md); }
+
+
+// Focus styles (examples)
+.focus-outline-none:focus { outline: none; }
+.focus-ring-2:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+.focus-ring-blue-500:focus { box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5); }
+
+
+// Item card styles (examples - may need to refine if different from admin list cards)
+.item-card {
+    background-color: white;
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.item-card-image-container { width: 100%; height: 12rem; overflow: hidden; } // h-48 = 12rem
+.item-card-image { width: 100%; height: 100%; object-fit: cover; }
+.item-card-no-image { width: 100%; height: 12rem; background-color: var(--gray-300); display: flex; align-items: center; justify-content: center; }
+.item-card-body { padding: var(--spacing-4); flex-grow: 1; }
+.item-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+.item-description { color: var(--gray-600); font-size: 1rem; line-height: 1.5rem; }
+
+
+// Comment form container (examples - assuming reuse from admin)
+.comment-form-container {
+    background-color: var(--white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-6);
+    margin-bottom: var(--spacing-6);
+}
+.comment-form-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-4);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+// Comment list (examples)
+.comments-list {
+   /* space-y-spacing-4 is handled by utility class on parent */
+}
+.comment-card {
+    background-color: var(--white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-4);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-2);
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+}
+
+.comment-meta-left { /* no styles needed */
+}
+
+.comment-author {
+    font-weight: 600;
+}
+
+.comment-category {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-left: var(--spacing-2);
+}
+
+.comment-timestamp {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.comment-content {
+    color: var(--gray-700);
+    margin-top: var(--spacing-2);
+}
+
+
+/* Note: Ensure all utility-like classes and CSS variables are defined ONCE in your main.css */

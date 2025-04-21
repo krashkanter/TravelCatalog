@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Add Accommodation - {{ taluk.name }}{% endblock %} {# This will now work #}
+
+{% block content %}
+    <div class="admin-page-content mb-spacing-8"> {# Reusing admin-page-content, mb-spacing-8 #}
+        <div class="page-header mb-spacing-6"> {# Using page-header, mb-spacing-6 #}
+            <h1 class="page-title font-bold mb-spacing-2">Add New Accommodation</h1>
+            {# Using page-title, font-bold, mb-spacing-2 #}
+            {# No back link needed here as the form block is centered below the header #}
+            {# The cancel link is within the form actions at the bottom #}
+        </div>
+
+        {# The form block is now centered using auth-form-container #}
+        <div class="auth-form-container bg-white rounded-lg shadow-md padding-6 max-w-md mx-auto">
+            {# Reusing auth-form-container and utility classes #}
+            {# Original h1 was inside this block, moving it slightly changes layout, but auth-title is centered anyway #}
+            {# <h1 class="text-2xl font-bold mb-6">Add New Accommodation</h1> #}
+
+            <form method="POST" action="{{ url_for('add_accommodation', taluk_id=taluk.id) }}">
+                {# Use taluk.id from the passed object #}
+                {{ form.hidden_tag() }}
+
+                <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                    <label for="{{ form.name.id }}" class="form-label block text-gray-700 font-medium mb-spacing-2">Accommodation
+                        Name</label> {# Reusing form-label, utility classes #}
+                    {{ form.name(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.name.errors %}
+                        {% for error in form.name.errors %}
+                            <span class="error-message text-red-600 text-sm mt-spacing-1">{{ error }}</span>
+                            {# Reusing error-message, utility classes #}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-spacing-4"> {# Reusing form-group, mb-spacing-4 #}
+                    <label for="{{ form.details.id }}" class="form-label block text-gray-700 font-medium mb-spacing-2">Details</label>
+                    {# Reusing form-label, utility classes #}
+                    {{ form.details(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", rows=5) }}
+                    {# Reusing form-input class #}
+                    {% if form.details.errors %}
+                        {% for error in form.details.errors %}
+                            <span class="error-message text-red-600 text-sm mt-spacing-1">{{ error }}</span>
+                            {# Reusing error-message, utility classes #}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-group mb-spacing-6"> {# Reusing form-group, mb-spacing-6 #}
+                    <label for="{{ form.image_url.id }}"
+                           class="form-label block text-gray-700 font-medium mb-spacing-2">Image URL</label>
+                    {# Reusing form-label, utility classes #}
+                    {{ form.image_url(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                    {# Reusing form-input class #}
+                    {% if form.image_url.errors %}
+                        {% for error in form.image_url.errors %}
+                            <span class="error-message text-red-600 text-sm mt-spacing-1">{{ error }}</span>
+                            {# Reusing error-message, utility classes #}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-actions flex items-center justify-between">
+                    {# Added form-actions, reusing utility classes #}
+                    {{ form.submit(class="form-submit bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                    {# Reusing form-submit class #}
+                    <a href="{{ url_for('list_accommodations', taluk_id=taluk.id) }}"
+                       class="cancel-link text-gray-600 hover-underline">Cancel</a>
+                    {# Added cancel-link, using utility classes #}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

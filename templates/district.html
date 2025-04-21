@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ district.name }}{% endblock %}
+
+{% block content %}
+    {# Main container for the district view #}
+    <div class="district-view mb-spacing-8"> {# Reusing district-view, using mb-spacing-8 #}
+
+        {# Back link to Dashboard #}
+        <a href="{{ url_for('dashboard') }}"
+           class="back-link inline-flex items-center text-blue-600 hover-underline mb-spacing-4">
+            {# Reusing back-link, utility-like classes for flex, text, hover, mb #}
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon-size-5 mr-spacing-1" viewBox="0 0 20 20"
+                 fill="currentColor"> {# Reusing utility classes for SVG size and margin #}
+                <path fill-rule="evenodd"
+                      d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                      clip-rule="evenodd"></path>
+            </svg>
+            Back to Dashboard
+        </a>
+
+        {# District Info Section (Image + Name/Count) #}
+        <div class="district-info flex items-center mb-spacing-4">
+            {# Reusing district-info, utility-like classes for flex, items-center, mb #}
+            {% if district.image_url %}
+                <img src="{{ district.image_url }}" alt="{{ district.name }}"
+                     class="district-image rounded-lg mr-spacing-6">
+                {# Reusing district-image, utility-like classes for rounded, mr #}
+            {% endif %}
+            <div class="district-details"> {# Reusing district-details #}
+                <h1 class="district-name font-bold text-3xl"> {{ district.name }}</h1>
+                {# Reusing district-name, utility-like classes for font, text size #}
+                <p class="district-taluk-count text-gray-600 text-xl">{{ district.taluks|length }} Taluks</p>
+                {# Reusing district-taluk-count, utility-like classes for text color, text size #}
+            </div>
+        </div>
+    </div>
+
+    {# Taluks List Section (Grid of Cards) #}
+    <div class="taluks-section mb-spacing-8"> {# Reusing taluks-section, mb-spacing-8 #}
+        <h2 class="taluks-title font-bold mb-spacing-4 text-2xl">Taluks in {{ district.name }}</h2>
+        {# Reusing taluks-title, utility-like classes for font, text size, mb #}
+
+        {% if district.taluks %} {# Display grid only if there are taluks #}
+            <div class="taluks-grid gap-spacing-6"> {# Reusing taluks-grid, utility-like classes for gap #}
+                {% for taluk in district.taluks %}
+                    <div class="taluk-card rounded-lg shadow-md overflow-hidden bg-white">
+                        {# Reusing taluk-card, utility-like classes for rounded, shadow, overflow, bg #}
+                        {# No image in Taluk card body in this template snippet #}
+                        <div class="taluk-card-body padding-4"> {# Reusing taluk-card-body, padding-4 #}
+                            <h3 class="taluk-name font-semibold mb-spacing-2 text-xl">{{ taluk.name }}</h3>
+                            {# Reusing taluk-name, utility-like classes for font, text size, mb #}
+                            <div class="taluk-details text-gray-600 mb-spacing-4 text-base">
+                                {# Reusing taluk-details, utility-like classes for text color, mb, text size #}
+                                {# Display the counts fetched by the updated route #}
+                                <p>{{ taluk.destination_count }} Destinations</p> {# <-- CORRECTED #}
+                                <p>{{ taluk.food_count }} Food Items</p> {# <-- CORRECTED #}
+                                <p>{{ taluk.accommodation_count }} Accommodations</p> {# <-- CORRECTED #}
+                                <p>{{ taluk.experience_count }} Experiences</p> {# <-- CORRECTED #}
+                            </div>
+                            {# View Details Button #}
+                            <a href="{{ url_for('view_taluk', taluk_id=taluk.id) }}"
+                               class="view-details-button inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500">
+                                {# Reusing view-details-button, utility-like classes #}
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            {# Display message if no taluks found for this district #}
+            <div class="no-items-block bg-white rounded-lg shadow-md padding-6 text-center">
+                {# Reusing no-items-block, utility-like classes #}
+                <p class="no-items-message text-gray-600 mb-spacing-4">No taluks found for this district.</p>
+                {# Reusing no-items-message, utility-like classes #}
+                {# No "Add New Taluk" button here, as that's on the Manage Taluks page #}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

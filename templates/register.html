@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    <div class="auth-form-container mx-auto bg-white rounded-lg shadow-md padding-6"> {# Reused class from login #}
+        <h1 class="auth-title font-bold mb-spacing-6 text-center">Register</h1> {# Reused class from login #}
+
+        <form method="POST" action="{{ url_for('register') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group mb-spacing-4"> {# Reused class from login #}
+                <label for="name" class="form-label block text-gray-700 font-medium mb-spacing-2">Name</label>
+                {# Reused class from login #}
+                {{ form.name(class="form-input w-full border border-gray-300 rounded-md focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                {# Reused class from login #}
+                {% if form.name.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1"> {# Reused class from login #}
+                        {% for error in form.name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group mb-spacing-4"> {# Reused class from login #}
+                <label for="email" class="form-label block text-gray-700 font-medium mb-spacing-2">Email</label>
+                {# Reused class from login #}
+                {{ form.email(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus-outline-none focus:ring-2 focus:ring-blue-500") }}
+                {# Reused class from login #}
+                {% if form.email.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1"> {# Reused class from login #}
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group mb-spacing-4"> {# Reused class from login #}
+                <label for="password" class="form-label block text-gray-700 font-medium mb-spacing-2">Password</label>
+                {# Reused class from login #}
+                {{ form.password(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus-outline-none focus:ring-2 focus:ring-blue-500") }}
+                {# Reused class from login #}
+                {% if form.password.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1"> {# Reused class from login #}
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group mb-spacing-6"> {# Reused class from login, using mb-spacing-6 #}
+                <label for="confirm" class="form-label block text-gray-700 font-medium mb-spacing-2">Confirm
+                    Password</label> {# Reused class from login #}
+                {{ form.confirm(class="form-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500") }}
+                {# Reused class from login #}
+                {% if form.confirm.errors %}
+                    <div class="error-message text-red-500 text-sm mt-spacing-1"> {# Reused class from login #}
+                        {% for error in form.confirm.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div>
+                {{ form.submit(class="form-submit w-full bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500") }}
+                {# Reused class from login #}
+            </div>
+        </form>
+
+        <div class="auth-footer mt-spacing-4 text-center"> {# Reused class from login #}
+            <p>Already have an account? <a href="{{ url_for('login') }}"
+                                           class="auth-footer-link text-blue-600 hover-underline">Login
+                here</a></p> {# Reused class from login #}
+        </div>
+    </div>
+{% endblock %}

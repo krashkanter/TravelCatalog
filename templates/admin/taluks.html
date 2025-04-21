@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Taluks{% endblock %}
+
+{% block content %}
+    <div class="admin-list-page mb-spacing-8">
+        <div class="list-header flex justify-between items-center mb-spacing-6">
+            <div class="list-header-left">
+                <h1 class="list-title font-bold mb-spacing-2">Manage Taluks</h1>
+                <a href="{{ url_for('admin_dashboard') }}" class="back-link text-blue-600 hover-underline">← Back to
+                    Admin
+                    Dashboard</a>
+            </div>
+            <a href="{{ url_for('add_taluk') }}"
+               class="add-button bg-blue-600 text-blue py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus:ring-2 focus:ring-blue-500">
+                Add New Taluk
+            </a>
+        </div>
+
+        {% if taluks %}
+            <div class="data-table-container bg-white rounded-lg shadow-md overflow-hidden">
+                <table class="data-table min-w-full divide-y divide-gray-200">
+                    <thead class="table-header bg-gray-50">
+                    <tr>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            District
+                        </th>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Content
+                        </th>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-body bg-white divide-y divide-gray-200">
+                    {% for taluk in taluks %}
+                        <tr class="table-row">
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">{{ taluk.name }}</div>
+                            </td>
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-900">{{ taluk.district_name }}</div>
+                            </td>
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap">
+                                <div class="cell-content-links flex space-x-spacing-2">
+                                    <a href="{{ url_for('list_destinations', taluk_id=taluk.id) }}"
+                                       class="content-link content-link-blue text-xs px-spacing-2 py-spacing-1 rounded">
+                                        {{ taluk.destination_count }} Destinations {# <-- Use the count #}
+                                    </a>
+                                    <a href="{{ url_for('list_food', taluk_id=taluk.id) }}"
+                                       class="content-link content-link-green text-xs px-spacing-2 py-spacing-1 rounded">
+                                        {{ taluk.food_count }} Food {# <-- Use the count #}
+                                    </a>
+                                    <a href="{{ url_for('list_accommodations', taluk_id=taluk.id) }}"
+                                       class="content-link content-link-yellow text-xs px-spacing-2 py-spacing-1 rounded">
+                                        {{ taluk.accommodation_count }} Accommodations {# <-- Use the count #}
+                                    </a>
+                                    <a href="{{ url_for('list_experiences', taluk_id=taluk.id) }}"
+                                       class="content-link content-link-purple text-xs px-spacing-2 py-spacing-1 rounded">
+                                        {{ taluk.experience_count }} Experiences {# <-- Use the count #}
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap text-sm">
+                                <a href="{{ url_for('edit_taluk', taluk_id=taluk.id) }}"
+                                   class="edit-link text-blue-600 hover-underline mr-spacing-4">Edit</a>
+                                <form method="POST" action="{{ url_for('delete_taluk', taluk_id=taluk.id) }}"
+                                      class="delete-form inline">
+                                    <button type="submit" class="delete-button text-red-600 hover-underline"
+                                            onclick="return confirm('Are you sure you want to delete this taluk?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="no-items-block bg-white rounded-lg shadow-md padding-6 text-center">
+                <p class="no-items-message text-gray-600 mb-spacing-4">No taluks found. Start by adding one.</p>
+                <a href="{{ url_for('add_taluk') }}"
+                   class="add-button-inline inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus:ring-2 focus:ring-blue-500">
+                    Add New Taluk
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+    <div class="admin-dashboard mb-spacing-8"> {# Added admin-dashboard, using mb-spacing-8 #}
+        <h1 class="dashboard-title font-bold mb-spacing-4">Admin Dashboard</h1>
+        {# Added dashboard-title, using font-bold, mb-spacing-4 #}
+        <p class="dashboard-subtitle text-gray-600 mb-spacing-6">Manage your travel catalog content here.</p>
+        {# Added dashboard-subtitle, using text-gray-600, mb-spacing-6 #}
+
+        <div class="dashboard-links-grid districts-grid gap-spacing-6">
+            {# Added dashboard-links-grid, reusing districts-grid and gap-spacing-6 #}
+            <a href="{{ url_for('list_districts') }}"
+               class="dashboard-link-card bg-white rounded-lg shadow-md padding-6 hover-shadow-lg transition-shadow">
+                {# Added dashboard-link-card, reusing utility-like classes #}
+                <h2 class="item-title font-semibold mb-spacing-2">Districts</h2>
+                {# Reusing item-title, font-semibold, mb-spacing-2 #}
+                <p class="item-description text-gray-600">Manage districts in your catalog</p>
+                {# Reusing item-description, text-gray-600 #}
+            </a>
+
+            <a href="{{ url_for('list_taluks') }}"
+               class="dashboard-link-card bg-white rounded-lg shadow-md padding-6 hover-shadow-lg transition-shadow">
+                {# Added dashboard-link-card, reusing utility-like classes #}
+                <h2 class="item-title font-semibold mb-spacing-2">Taluks</h2>
+                {# Reusing item-title, font-semibold, mb-spacing-2 #}
+                <p class="item-description text-gray-600">Manage taluks in your catalog</p>
+                {# Reusing item-description, text-gray-600 #}
+            </a>
+        </div>
+    </div>
+{% endblock %}

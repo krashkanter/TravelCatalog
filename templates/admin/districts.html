@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Districts{% endblock %}
+
+{% block content %}
+    <div class="admin-list-page mb-spacing-8">
+        {# THIS IS THE HEADER DIV #}
+        <div class="list-header flex justify-between items-center mb-spacing-6">
+            <div class="list-header-left">
+                <h1 class="list-title font-bold mb-spacing-2">Manage Districts</h1>
+                <a href="{{ url_for('admin_dashboard') }}" class="back-link text-blue-600 hover-underline">← Back to
+                    Admin
+                    Dashboard</a>
+            </div>
+            {# THIS IS THE BUTTON TO ADD A NEW DISTRICT IN THE HEADER #}
+            <a href="{{ url_for('add_district') }}"
+               class="add-button bg-blue-600 text-blue py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus:ring-blue-500">
+                Add New District
+            </a>
+        </div>
+
+        {% if districts %}
+            <div class="data-table-container bg-white rounded-lg shadow-md overflow-hidden">
+                {# Reusing data-table-container, utility-like classes #}
+                <table class="data-table min-w-full divide-y divide-gray-200">
+                    {# Reusing data-table, utility-like classes #}
+                    <thead class="table-header bg-gray-50"> {# Reusing table-header, bg-gray-50 #}
+                    <tr>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Name {# Reusing table-header-cell, utility-like classes #}
+                        </th>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {# Reusing table-header-cell, utility-like classes #}
+                            Taluks
+                        </th>
+                        <th scope="col"
+                            class="table-header-cell px-spacing-6 py-spacing-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {# Reusing table-header-cell, utility-like classes #}
+                            Actions
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-body bg-white divide-y divide-gray-200">
+                    {# Reusing table-body, utility-like classes #}
+                    {% for district in districts %}
+                        <tr class="table-row"> {# Reusing table-row #}
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap">
+                                {# Reusing table-cell, utility-like classes #}
+                                <div class="district-cell-content flex items-center">
+                                    {# Added district-cell-content, reusing utility-like classes #}
+                                    {% if district.image_url %}
+                                        <img class="district-image-thumbnail h-10 w-10 rounded-full object-cover mr-spacing-3"
+                                                {# Added district-image-thumbnail, using utility-like classes #}
+                                             src="{{ district.image_url }}" alt="{{ district.name }}">
+                                    {% endif %}
+                                    <div class="district-name-cell"> {# Added district-name-cell #}
+                                        <div class="text-sm font-medium text-gray-900">{{ district.name }}</div>
+                                        {# Using utility-like classes #}
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap">
+                                {# Reusing table-cell, utility-like classes #}
+                                <div class="taluk-count-cell text-sm text-gray-900">{{ district.taluks|length }}
+                                    Taluks
+                                </div>
+                                {# Added taluk-count-cell, using utility-like classes #}
+                            </td>
+                            <td class="table-cell px-spacing-6 py-spacing-4 whitespace-nowrap text-sm">
+                                {# Reusing table-cell, utility-like classes #}
+                                <a href="{{ url_for('edit_district', district_id=district.id) }}"
+                                   class="edit-link text-blue-600 hover-underline mr-spacing-4">Edit</a>
+                                {# Reusing edit-link, utility-like classes #}
+                                <form method="POST" action="{{ url_for('delete_district', district_id=district.id) }}"
+                                      class="delete-form inline"> {# Reusing delete-form, utility-like classes #}
+                                    <button type="submit" class="delete-button text-red-600 hover-underline"
+                                            {# Reusing delete-button, utility-like classes #}
+                                            onclick="return confirm('Are you sure you want to delete this district?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="no-items-block bg-white rounded-lg shadow-md padding-6 text-center">
+                {# Reusing no-items-block, utility-like classes #}
+                <p class="no-items-message text-gray-600 mb-spacing-4">No districts found. Start by adding one.</p>
+                {# Reusing no-items-message, utility-like classes #}
+                <a href="{{ url_for('add_district') }}"
+                   class="add-button-inline inline-block bg-blue-600 text-white py-2 px-4 rounded-md hover-bg-blue-700 focus-outline-none focus-ring-2 focus-ring-blue-500">
+                    {# Reusing add-button-inline, utility-like classes #}
+                    Add New District
+                </a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
